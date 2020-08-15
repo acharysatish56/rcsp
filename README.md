@@ -5,7 +5,10 @@
   * Mavan as Build tool
   * Spring 2.3.2.RELEASE
   * Lombok (moved 1.14.12 to 1.18.12 due to compatibility issue)
-  * Junit 5
+  * Junit 5 
+  * Swagger
+  * Logger(Slf4j)
+  * Functional Style Programming
 
 ### Instruction for running the application
   * mvn install
