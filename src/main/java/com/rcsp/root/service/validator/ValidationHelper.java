@@ -18,11 +18,5 @@ public class ValidationHelper {
     /**
      *
      */
-    public static Predicate<Transaction> isMinusBalanceMatching =
-            (transaction) -> transaction.getStartBalance().subtract(transaction.getMutation()).compareTo(transaction.getEndBalance()) == 0;
-
-    /**
-     *
-     */
-    public static Predicate<Transaction> isConflictInBalance = transaction -> isAddingBalanceMatching.or(isMinusBalanceMatching).negate().test(transaction);
+    public static Predicate<Transaction> isConflictInBalance = transaction -> isAddingBalanceMatching.negate().test(transaction);
 }
