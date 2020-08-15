@@ -1,6 +1,7 @@
 package com.rcsp.root.controller;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.rcsp.root.common.ResponseType;
 import com.rcsp.root.model.response.Result;
@@ -58,5 +59,15 @@ public class ErrorHandlingController {
         return new Result(ResponseType.BAD_REQUEST, Collections.emptySet());
     }
 
-
+    /**
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(JsonMappingException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public Result handleJsonMappingException(final JsonMappingException e) {
+        log.error(e.getOriginalMessage());
+        return new Result(ResponseType.BAD_REQUEST, Collections.emptySet());
+    }
 }
