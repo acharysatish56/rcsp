@@ -3,3 +3,16 @@ logging:
   file:
     name: rcsp
     path: ./logs/
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path: /manageservice
+      exposure:
+        include: shutdown, info
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      enabled: true
