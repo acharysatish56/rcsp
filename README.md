@@ -9,6 +9,7 @@
   * Swagger
   * Logger(Slf4j)
   * Functional Style Programming
+  * Docker config
 
 ### Instruction for running the application
   * mvn install
@@ -16,6 +17,15 @@
   * mvn package (will generate jar file in target folder)
   * java -jar rcsp-0.0.1-SNAPSHOT.jar
 
+### Instruction for creating docker image on local
+  * cd \rcsp\src\main\docker (needs to point where the docker file exist).
+  * docker build --tag <tag_name> . (will take time the build is going to happen on the fly rather than copying on previuos build)
+  * docker run -ti -p8080:8080 acharysatish56/rcsp
+
+### have docker .
+  * docker pull acharysatish56/rcsp:latest
+  * docker run -ti -p8080:8080 acharysatish56/rcsp
+  
 #### INPUT JSON
 
 This following structure is used for input model
