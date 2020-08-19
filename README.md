@@ -20,7 +20,7 @@
 ### Instruction for creating docker image on local
   * cd \rcsp\src\main\docker (needs to point where the docker file exist).
   * docker build --tag <tag_name> . (will take time the build is going to happen on the fly rather than copying on previuos build)
-  * docker run -ti -p8080:8080 acharysatish56/rcsp
+  * docker run -ti -p8080:8080 <tag_name>
 
 ### have docker .
   * docker pull acharysatish56/rcsp:latest
