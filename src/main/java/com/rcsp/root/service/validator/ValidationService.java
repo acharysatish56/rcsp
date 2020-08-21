@@ -56,18 +56,9 @@ public class ValidationService {
      */
     public Result prepareResult(Tuple2<Set<ErrorRecord>, Set<ErrorRecord>> tuple2) {
         log.info("preparing result");
-        if (!tuple2._1().isEmpty() && !tuple2._2().isEmpty()) {
-            //DUPLICATE_REFERENCE_INCORRECT_END_BALANCE
-            tuple2._1.addAll(tuple2._2);
-            return new Result(ResponseType.DUPLICATE_REFERENCE_INCORRECT_END_BALANCE, tuple2._1);
-        } else if (!tuple2._1().isEmpty() && tuple2._2().isEmpty()) {
-            //DUPLICATE_REFERENCE
-            return new Result(ResponseType.DUPLICATE_REFERENCE, tuple2._1);
-        } else if (tuple2._1().isEmpty() && !tuple2._2().isEmpty()) {
-            //INCORRECT_END_BALANCE
-            return new Result(ResponseType.INCORRECT_END_BALANCE, tuple2._2);
-        } else {
-            return new Result(ResponseType.SUCCESSFUL, Collections.emptySet());
-        }
+        return ValidationHelper.RESULT_FILTER.entrySet()
+                .stream()
+                .filter(e -> e.getValue().test(tuple2._1, tuple2._2))
+                .map(e -> ValidationHelper.RESULT.get(e.getKey()).apply(tuple2._1, tuple2._2)).findAny().get();
     }
 }
